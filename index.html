@@ -1,1 +1,97 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f7f4"><title>math.exe — Think. Click. Regret.</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body><header><a class="brand" href="#">m. <span>math.exe</span></a><div class="status"><i></i> SYSTEM ONLINE　/　<span id="level">LEVEL 01</span></div><span class="sound">♫ SOUND OFF</span></header><main><section class="hero"><div><p class="eyebrow">THE UNNECESSARILY DIFFICULT MATH GAME</p><h1>Your brain.<br><em>Our problem.</em></h1><p class="sub">A little maths. A little logic. A suspicious amount of trolling.</p><button class="dark" onclick="document.querySelector('#modes').scrollIntoView({behavior:'smooth'})">START PLAYING ↗</button><small>NO CALCULATOR. NO EXCUSES.</small></div><div class="art"><div class="art-label">FIG. 001 — THE THINKING MACHINE</div><div class="window"><div class="windowbar">●　●　● <span>brain.exe</span></div><div class="face"><b></b><b></b><i></i></div><p>PROCESSING... MAYBE.</p></div><strong class="stamp">THINK<br>AGAIN!</strong><span class="cross">×</span></div></section><section class="stats"><div><small>TOTAL XP</small><b id="xp">0000</b></div><div><small>BEST STREAK</small><b id="streak">00</b></div><div><small>PUZZLES SOLVED</small><b id="solved">00</b></div><div><small>CURRENT RANK</small><b id="rank">NEWBIE</b></div></section><section id="modes"><div class="section-head"><div><p class="eyebrow">CHOOSE YOUR SUFFERING</p><h2>Game modes<span>.</span></h2></div><small>01 — 04</small></div><div class="grid"><button class="card featured" data-mode="troll"><small>01 / MAIN EVENT</small><b class="symbol">?!</b><strong>Troll quiz</strong><p>Questions that look easy. Your confidence won't survive.</p><label>PLAY MODE　↗</label></button><button class="card" data-mode="puzzle"><small>02 / LOGIC</small><b class="symbol">▦</b><strong>Brain puzzles</strong><p>Patterns, riddles and numbers hiding in plain sight.</p><label>PLAY MODE　↗</label></button><button class="card" data-mode="speed"><small>03 / 10 SECONDS</small><b class="symbol">秒</b><strong>Speed math</strong><p>Fast answers only. Your brain has left the chat.</p><label>PLAY MODE　↗</label></button><button class="card" data-mode="impossible"><small>04 / GOOD LUCK</small><b class="symbol">∞</b><strong>Impossible mode</strong><p>Deceptive wording. Unfairly fair. Allegedly.</p><label>PLAY MODE　↗</label></button></div></section><aside><small>DAILY REMINDER</small><b>Math is easy. Reading the question is the hard part.</b><span>∑</span></aside><footer>© 2026 MATH.EXE <span>BUILT FOR OVERTHINKERS ✳</span><span>V 1.0.0</span></footer></main><div class="overlay hidden" id="overlay"><section class="panel"><div class="paneltop">math.exe <span>/ PLAY</span><button id="close">×</button></div><div class="progress"><i id="bar"></i></div><div class="meta"><span id="modeLabel">TROLL QUIZ</span><span id="count">QUESTION 01 / 05</span></div><h2 id="question">Ready?</h2><p id="hint" class="hint"></p><div id="answers" class="answers"></div><div class="panelbottom" id="panelbottom"><small id="feedback">ONE ANSWER. ZERO REGRETS.</small><button class="dark" id="submit" disabled>LOCK IT IN ↗</button></div><div id="result" class="hidden result"><div class="resulticon">✓</div><small>SESSION COMPLETE</small><h2 id="resultTitle"></h2><p id="resultText"></p><b id="earned"></b><button class="dark" id="again">PLAY AGAIN ↗</button></div></section></div><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f7f7f4">
+<title>mathking — Maths Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">MK</span><span>mathking<span class="dot">.</span></span></a>
+  <div class="top-meta"><i></i> LEARNING MODE <b>/</b> <span id="classBadge">SELECT CLASS</span></div>
+  <button class="sound" id="soundBtn" type="button">♫ <span id="soundLabel">SOUND ON</span></button>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <p class="eyebrow"><span></span> THE MATHEMATICS CHALLENGE</p>
+      <h1>Think sharp.<br><em>Play smart.</em></h1>
+      <p class="intro">School maths, brain teasers and unexpected questions. Choose your class and take the challenge.</p>
+      <button class="primary" id="chooseClass">CHOOSE YOUR CLASS <b>↗</b></button>
+    </div>
+    <div class="hero-visual">
+      <span class="visual-note">MATHKING / EST. 2026</span>
+      <div class="pixel-card">
+        <div class="pixel-head"><span></span><span></span><span></span><label>mathking.exe</label></div>
+        <div class="pixel-face"><i></i><i></i><b></b></div>
+        <p>READY PLAYER_01</p>
+      </div>
+      <span class="float f1">+</span><span class="float f2">÷</span><span class="float f3">?</span>
+      <span class="visual-foot">KNOWLEDGE × CURIOSITY</span>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><small>TOTAL XP</small><strong id="xp">0000</strong></div>
+    <div><small>QUIZZES COMPLETED</small><strong id="completed">00</strong></div>
+    <div><small>BEST STREAK</small><strong id="best">00</strong></div>
+    <div><small>PLAYER RANK</small><strong class="rank" id="rank">BEGINNER</strong></div>
+  </section>
+
+  <section class="section" id="classSection">
+    <div class="section-title"><div><p class="eyebrow">01 / SELECT YOUR LEVEL</p><h2>Choose class<span>.</span></h2></div><p class="section-side">CLASSES 02 — 12</p></div>
+    <div class="class-grid" id="classGrid"></div>
+  </section>
+
+  <section class="section topics-section" id="topicSection">
+    <div class="section-title"><div><p class="eyebrow">02 / BUILD YOUR CHALLENGE</p><h2>Pick a subject<span>.</span></h2></div><p class="section-side" id="selectedClassLabel">NO CLASS SELECTED</p></div>
+    <div class="topic-row" id="topicRow"><p class="empty-state">Select a class to see its syllabus topics.</p></div>
+    <button class="primary start-quiz" id="startQuiz" disabled>START QUIZ <b>↗</b></button>
+  </section>
+
+  <section class="note-strip"><div><small>DAILY THOUGHT</small><strong>Every problem has a solution. Some just have a sense of humour.</strong></div><span>∑</span></section>
+  <footer><span>© 2026 MATHKING</span><span>MADE FOR CURIOUS MINDS ✳</span><span>VERSION 2.0</span></footer>
+</main>
+
+<div class="overlay hidden" id="quizOverlay" role="dialog" aria-modal="true" aria-labelledby="question">
+  <div class="quiz-panel">
+    <div class="quiz-head"><div class="quiz-brand">mathking <span>/ CHALLENGE</span></div><button class="close" id="closeQuiz" aria-label="Close">×</button></div>
+    <div class="progress"><span id="progress"></span></div>
+    <div class="quiz-meta"><span id="quizMode">CLASS QUIZ</span><span id="questionNumber">01 / 05</span></div>
+    <div id="questionView">
+      <p class="topic-tag" id="topicTag">MATHEMATICS</p>
+      <h2 id="question">Question</h2>
+      <p class="question-sub" id="questionSub">Choose the best answer.</p>
+      <div class="options" id="options"></div>
+      <div class="quiz-actions"><span id="quizMessage">SELECT ONE ANSWER</span><button class="primary" id="submit" disabled>SUBMIT ANSWER <b>↗</b></button></div>
+    </div>
+    <div class="result hidden" id="resultView">
+      <div class="result-icon">✓</div><p class="eyebrow centered">CHALLENGE COMPLETE</p>
+      <h2 id="resultTitle">Well played.</h2><p id="resultSummary"></p>
+      <div class="result-xp"><small>XP EARNED</small><strong id="resultXP">+000</strong></div>
+      <button class="primary" id="finish">BACK TO DASHBOARD <b>↗</b></button>
+    </div>
+  </div>
+</div>
+
+<div class="credits hidden" id="credits">
+  <div class="credits-inner">
+    <p class="credit-kicker">MATHKING / END CREDITS</p>
+    <div class="credit-rule"></div>
+    <h2>THANK<br><span>YOU.</span></h2>
+    <div class="credit-list">
+      <div><small>CREATED &amp; PLANNED BY</small><strong>VimalKumar - XI "B"</strong></div>
+      <div><small>SUPPORT</small><strong>Ariharan J</strong></div>
+      <div><small>PRESENTED &amp; FUNDED BY</small><strong>Team 7</strong></div>
+    </div>
+    <div class="credit-rule"></div>
+    <p class="credit-footer">MATHKING © 2026 <span>END OF SESSION_</span></p>
+    <button class="credit-button" id="creditsHome">RETURN TO MATHKING ↗</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>
