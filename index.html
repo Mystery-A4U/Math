@@ -3,95 +3,106 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f7f7f4">
-<title>mathking — Maths Challenge</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>mathking — The Maths Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="topbar">
   <a class="brand" href="#"><span class="brand-mark">MK</span><span>mathking<span class="dot">.</span></span></a>
-  <div class="top-meta"><i></i> LEARNING MODE <b>/</b> <span id="classBadge">SELECT CLASS</span></div>
-  <button class="sound" id="soundBtn" type="button">♫ <span id="soundLabel">SOUND ON</span></button>
+  <div class="top-meta"><i></i> MATH CHALLENGE <b>/</b> 8 STAGES</div>
+  <span class="version">V 3.0</span>
 </header>
 <main class="wrap">
   <section class="hero">
-    <div>
-      <p class="eyebrow"><span></span> THE MATHEMATICS CHALLENGE</p>
-      <h1>Think sharp.<br><em>Play smart.</em></h1>
-      <p class="intro">School maths, brain teasers and unexpected questions. Choose your class and take the challenge.</p>
-      <button class="primary" id="chooseClass">CHOOSE YOUR CLASS <b>↗</b></button>
+    <div class="hero-copy">
+      <p class="eyebrow"><span></span> THE SCHOOL MATHEMATICS CHALLENGE</p>
+      <h1>One quiz.<br><em>Eight stages.</em></h1>
+      <p class="intro">From classroom basics to brain-bending problems. Pick your details, then prove what you know.</p>
+      <button class="primary" id="beginBtn">ENTER THE CHALLENGE <b>↗</b></button>
     </div>
-    <div class="hero-visual">
-      <span class="visual-note">MATHKING / EST. 2026</span>
-      <div class="pixel-card">
-        <div class="pixel-head"><span></span><span></span><span></span><label>mathking.exe</label></div>
-        <div class="pixel-face"><i></i><i></i><b></b></div>
+    <div class="hero-art">
+      <span class="art-note">MATHKING / 2026</span>
+      <div class="pixel-window">
+        <div class="window-top"><i></i><i></i><i></i><label>mathking.exe</label></div>
+        <div class="pixel-face"><b></b><b></b><i></i></div>
         <p>READY PLAYER_01</p>
       </div>
       <span class="float f1">+</span><span class="float f2">÷</span><span class="float f3">?</span>
-      <span class="visual-foot">KNOWLEDGE × CURIOSITY</span>
+      <span class="art-bottom">THINK × SOLVE × ADVANCE</span>
     </div>
+  </section>
+
+  <section class="challenge" id="challenge">
+    <div class="section-head">
+      <div><p class="eyebrow"><span></span> THE MAIN EVENT</p><h2>Your challenge<span>.</span></h2></div>
+      <span class="section-index">01 / 01</span>
+    </div>
+    <div class="challenge-card">
+      <div class="challenge-top"><span>THE MATHKING RUN</span><span>8 STAGES · ONE JOURNEY</span></div>
+      <div class="stage-track" id="stageTrack">
+        <div class="stage"><b>01</b><small>WARM UP</small></div><div class="stage"><b>02</b><small>NUMBERS</small></div>
+        <div class="stage"><b>03</b><small>OPERATIONS</small></div><div class="stage"><b>04</b><small>FRACTIONS</small></div>
+        <div class="stage"><b>05</b><small>GEOMETRY</small></div><div class="stage"><b>06</b><small>ALGEBRA</small></div>
+        <div class="stage"><b>07</b><small>LOGIC</small></div><div class="stage"><b>08</b><small>FINAL BOSS</small></div>
+      </div>
+      <p class="challenge-copy">Each stage draws from your selected class syllabus, with a few unexpected questions along the way. Complete all eight stages to finish the run.</p>
+      <button class="primary" id="startQuiz">START 8-STAGE QUIZ <b>↗</b></button>
+    </div>
+    <div class="syllabus-note"><span class="syllabus-symbol">∑</span><div><small>SYLLABUS RANGE</small><strong>Classes 2–12 · Age-appropriate mathematics</strong><p>Topics adapt to the standard you select before starting.</p></div></div>
   </section>
 
   <section class="stats">
-    <div><small>TOTAL XP</small><strong id="xp">0000</strong></div>
-    <div><small>QUIZZES COMPLETED</small><strong id="completed">00</strong></div>
-    <div><small>BEST STREAK</small><strong id="best">00</strong></div>
-    <div><small>PLAYER RANK</small><strong class="rank" id="rank">BEGINNER</strong></div>
+    <div><small>TOTAL XP</small><strong id="xp">0000</strong></div><div><small>QUIZ RUNS</small><strong id="runs">00</strong></div><div><small>BEST SCORE</small><strong id="best">00/08</strong></div><div><small>PLAYER RANK</small><strong class="rank" id="rank">BEGINNER</strong></div>
   </section>
-
-  <section class="section" id="classSection">
-    <div class="section-title"><div><p class="eyebrow">01 / SELECT YOUR LEVEL</p><h2>Choose class<span>.</span></h2></div><p class="section-side">CLASSES 02 — 12</p></div>
-    <div class="class-grid" id="classGrid"></div>
-  </section>
-
-  <section class="section topics-section" id="topicSection">
-    <div class="section-title"><div><p class="eyebrow">02 / BUILD YOUR CHALLENGE</p><h2>Pick a subject<span>.</span></h2></div><p class="section-side" id="selectedClassLabel">NO CLASS SELECTED</p></div>
-    <div class="topic-row" id="topicRow"><p class="empty-state">Select a class to see its syllabus topics.</p></div>
-    <button class="primary start-quiz" id="startQuiz" disabled>START QUIZ <b>↗</b></button>
-  </section>
-
-  <section class="note-strip"><div><small>DAILY THOUGHT</small><strong>Every problem has a solution. Some just have a sense of humour.</strong></div><span>∑</span></section>
-  <footer><span>© 2026 MATHKING</span><span>MADE FOR CURIOUS MINDS ✳</span><span>VERSION 2.0</span></footer>
+  <footer><span>© 2026 MATHKING</span><span>BUILT FOR CURIOUS MINDS ✳</span><span>V 3.0.0</span></footer>
 </main>
 
-<div class="overlay hidden" id="quizOverlay" role="dialog" aria-modal="true" aria-labelledby="question">
-  <div class="quiz-panel">
-    <div class="quiz-head"><div class="quiz-brand">mathking <span>/ CHALLENGE</span></div><button class="close" id="closeQuiz" aria-label="Close">×</button></div>
-    <div class="progress"><span id="progress"></span></div>
-    <div class="quiz-meta"><span id="quizMode">CLASS QUIZ</span><span id="questionNumber">01 / 05</span></div>
-    <div id="questionView">
-      <p class="topic-tag" id="topicTag">MATHEMATICS</p>
-      <h2 id="question">Question</h2>
-      <p class="question-sub" id="questionSub">Choose the best answer.</p>
-      <div class="options" id="options"></div>
-      <div class="quiz-actions"><span id="quizMessage">SELECT ONE ANSWER</span><button class="primary" id="submit" disabled>SUBMIT ANSWER <b>↗</b></button></div>
-    </div>
-    <div class="result hidden" id="resultView">
-      <div class="result-icon">✓</div><p class="eyebrow centered">CHALLENGE COMPLETE</p>
-      <h2 id="resultTitle">Well played.</h2><p id="resultSummary"></p>
-      <div class="result-xp"><small>XP EARNED</small><strong id="resultXP">+000</strong></div>
-      <button class="primary" id="finish">BACK TO DASHBOARD <b>↗</b></button>
-    </div>
+<div class="overlay hidden" id="profileOverlay" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+ <form class="profile-panel" id="profileForm">
+  <div class="modal-top"><span class="mono">PLAYER REGISTRATION / 01</span><button type="button" class="close" id="closeProfile">×</button></div>
+  <p class="eyebrow"><span></span> BEFORE YOU BEGIN</p><h2 id="profileTitle">Who's playing<span>?</span></h2>
+  <p class="sub">Enter your details to personalise your eight-stage challenge.</p>
+  <label>YOUR NAME<input id="playerName" name="playerName" placeholder="Enter your name" maxlength="32" required></label>
+  <div class="form-grid">
+   <label>STANDARD<select id="standard" required><option value="">Select class</option></select></label>
+   <label>SECTION<input id="section" name="section" placeholder="e.g. A, B, C" maxlength="8" required></label>
   </div>
+  <div class="profile-foot"><span>YOUR DETAILS STAY ON THIS DEVICE</span><button class="primary" type="submit">CONTINUE <b>↗</b></button></div>
+ </form>
+</div>
+
+<div class="overlay hidden" id="quizOverlay" role="dialog" aria-modal="true" aria-labelledby="question">
+ <div class="quiz-panel">
+  <div class="quiz-head"><div class="quiz-brand">mathking <span>/ PLAYER CHALLENGE</span></div><button class="close" id="closeQuiz" aria-label="Close">×</button></div>
+  <div class="player-line"><span id="playerLabel">PLAYER</span><span id="standardLabel">CLASS — SECTION —</span></div>
+  <div class="progress"><span id="progress"></span></div>
+  <div class="quiz-meta"><span id="stageLabel">STAGE 01 / 08</span><span id="questionNumber">QUESTION 01 / 03</span></div>
+  <div id="questionView"><p class="topic-tag" id="topicTag">WARM UP</p><h2 id="question">Question</h2><p class="question-sub">Choose one answer.</p><div class="options" id="options"></div><div class="quiz-actions"><span id="quizMessage">SELECT YOUR ANSWER</span><button class="primary" id="submit" disabled>SUBMIT ANSWER <b>↗</b></button></div></div>
+  <div class="result hidden" id="stageResult"><div class="result-icon">✓</div><p class="eyebrow centered">STAGE CLEARED</p><h2 id="stageResultTitle">Good work.</h2><p id="stageResultText"></p><button class="primary" id="nextStage">CONTINUE <b>↗</b></button></div>
+  <div class="result hidden" id="finalResult"><div class="result-icon">★</div><p class="eyebrow centered">ALL EIGHT STAGES COMPLETE</p><h2 id="finalTitle">Challenge complete.</h2><p id="finalText"></p><div class="result-xp"><small>XP EARNED</small><strong id="earnedXP">+000</strong></div><button class="primary" id="showCredits">VIEW CREDITS <b>↗</b></button></div>
+ </div>
 </div>
 
 <div class="credits hidden" id="credits">
-  <div class="credits-inner">
-    <p class="credit-kicker">MATHKING / END CREDITS</p>
-    <div class="credit-rule"></div>
-    <h2>THANK<br><span>YOU.</span></h2>
-    <div class="credit-list">
-      <div><small>CREATED &amp; PLANNED BY</small><strong>VimalKumar - XI "B"</strong></div>
-      <div><small>SUPPORT</small><strong>Ariharan J</strong></div>
-      <div><small>PRESENTED &amp; FUNDED BY</small><strong>Team 7</strong></div>
-    </div>
-    <div class="credit-rule"></div>
-    <p class="credit-footer">MATHKING © 2026 <span>END OF SESSION_</span></p>
-    <button class="credit-button" id="creditsHome">RETURN TO MATHKING ↗</button>
+ <div class="credits-inner">
+  <p class="credit-kicker">MATHKING / ACKNOWLEDGEMENTS</p>
+  <h2>THE PEOPLE<br><span>BEHIND IT.</span></h2>
+  <div class="credit-row">
+   <div class="credit-art" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M17 14h39v45H17zM25 22h23M25 31h23M25 40h15M25 51h20" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 49l8 8 13-17" fill="none" stroke="currentColor" stroke-width="4"/></svg></div>
+   <div class="credit-copy"><small>CREATED &amp; PLANNED BY</small><strong>VIMALKUMAR - XI "B"</strong></div>
   </div>
+  <div class="credit-row">
+   <div class="credit-art" aria-hidden="true"><svg viewBox="0 0 80 80"><circle cx="30" cy="27" r="11" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="53" cy="31" r="9" fill="none" stroke="currentColor" stroke-width="3"/><path d="M9 65c1-15 10-23 21-23s20 8 21 23M43 47c13-5 25 3 28 18" fill="none" stroke="currentColor" stroke-width="3"/></svg></div>
+   <div class="credit-copy"><small>SUPPORTED BY</small><strong>ARIHARAN J</strong></div>
+  </div>
+  <div class="credit-row">
+   <div class="credit-art" aria-hidden="true"><svg viewBox="0 0 80 80"><path d="M40 9l27 15v31L40 70 13 55V24z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M13 24l27 16 27-16M40 40v30M27 17l27 16" fill="none" stroke="currentColor" stroke-width="3"/></svg></div>
+   <div class="credit-copy"><small>PRESENTED &amp; FUNDED BY</small><strong>TEAM 7</strong></div>
+  </div>
+  <p class="credit-footer"><span>MATHKING © 2026</span><span>END OF SESSION_</span></p>
+  <button class="credit-button" id="creditsHome">RETURN TO MATHKING ↗</button>
+ </div>
 </div>
-<div class="toast" id="toast"></div>
 <script src="script.js"></script>
 </body></html>
