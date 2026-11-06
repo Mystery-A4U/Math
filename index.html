@@ -46,7 +46,7 @@
         <div class="stage"><b>05</b><small>GEOMETRY</small></div><div class="stage"><b>06</b><small>ALGEBRA</small></div>
         <div class="stage"><b>07</b><small>BRAIN TEASER</small></div><div class="stage"><b>08</b><small>FINAL BOSS</small></div>
       </div>
-      <p class="challenge-copy">Stages 1–3 ease you in. From Stage 4 the quiz turns hard: tougher questions, a 45-second timer and bonus XP. The quiz opens full screen.</p>
+      <p class="challenge-copy">Every stage has 3 questions, you have 3 hearts, and trolls wait in between. Stages 1–3 ease you in. From Stage 4 the quiz turns hard: tougher questions, a 45-second timer and bonus XP. The quiz opens full screen.</p>
       <button class="primary" id="startQuiz">START 8-STAGE QUIZ <b>↗</b></button>
     </div>
     <div class="syllabus-note"><span class="syllabus-symbol">∑</span><div><small>SYLLABUS RANGE</small><strong>Classes 2–12 · Age-appropriate mathematics</strong><p>Topics adapt to the standard you select before starting.</p></div></div>
@@ -55,7 +55,7 @@
   <section class="features" id="why"><div><b>01</b><h3>Full-screen focus</h3><p>The quiz takes over your whole screen. No distractions, just you and the problem.</p></div><div><b>02</b><h3>Gets harder at Stage 4</h3><p>Warm up gently, then face tougher questions against a ticking clock.</p></div><div><b>03</b><h3>Fresh questions</h3><p>Every run mixes questions from a growing bank, so no two runs feel the same.</p></div></section>
 <section class="board" id="board"><div><small>TAMIL NADU STATE BOARD</small><strong>Classes 6 – 12</strong><p>Questions aligned to the Samacheer Kalvi mathematics syllabus.</p></div><div class="chips"><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div></section>
 <section class="stats">
-    <div><small>TOTAL XP</small><strong id="xp">0000</strong></div><div><small>QUIZ RUNS</small><strong id="runs">00</strong></div><div><small>BEST SCORE</small><strong id="best">00/08</strong></div><div><small>PLAYER RANK</small><strong class="rank" id="rank">BEGINNER</strong></div>
+    <div><small>TOTAL XP</small><strong id="xp">0000</strong></div><div><small>QUIZ RUNS</small><strong id="runs">00</strong></div><div><small>BEST SCORE</small><strong id="best">00/24</strong></div><div><small>PLAYER RANK</small><strong class="rank" id="rank">BEGINNER</strong></div>
   </section>
   <footer><span>© 2026 MATHKING</span><span>BUILT FOR CURIOUS MINDS ✳</span><span>V 4.0.0</span></footer>
 </main>
@@ -76,13 +76,13 @@
 
 <div class="overlay hidden" id="quizOverlay" role="dialog" aria-modal="true" aria-labelledby="question">
  <div class="quiz-panel">
-  <div class="quiz-head"><div class="quiz-brand">mathking <span>/ PLAYER CHALLENGE</span></div><button class="close" id="closeQuiz" aria-label="Close">×</button></div>
+  <div class="quiz-head"><div class="quiz-brand">mathking <span>/ PLAYER CHALLENGE</span></div><div class="hearts" id="hearts" aria-label="Hearts"></div><button class="close" id="closeQuiz" aria-label="Close">×</button></div>
   <div class="player-line"><span id="playerLabel">PLAYER</span><span id="standardLabel">CLASS — SECTION —</span></div>
   <div class="progress"><span id="progress"></span></div><div class="timebar hidden" id="timebar"><i></i></div>
   <div class="quiz-meta"><span id="stageLabel">STAGE 01 / 08</span><span id="questionNumber">QUESTION 01 / 01</span><span id="timer"></span></div>
   <div id="questionView"><p class="topic-tag" id="topicTag">WARM UP</p><h2 id="question">Question</h2><p class="question-sub">Choose one answer.</p><div class="options" id="options"></div><div class="quiz-actions"><span id="quizMessage">SELECT YOUR ANSWER</span><button class="primary" id="submit" disabled>SUBMIT ANSWER <b>↗</b></button></div></div>
-  <div class="result hidden" id="stageResult"><div class="result-icon">✓</div><p class="eyebrow centered">STAGE CLEARED</p><h2 id="stageResultTitle">Good work.</h2><p id="stageResultText"></p><button class="primary" id="nextStage">CONTINUE <b>↗</b></button></div>
-  <div class="result hidden" id="finalResult"><div class="result-icon">★</div><p class="eyebrow centered">ALL EIGHT STAGES COMPLETE</p><h2 id="finalTitle">Challenge complete.</h2><p id="finalText"></p><div class="result-xp"><small>XP EARNED</small><strong id="earnedXP">+000</strong></div><button class="primary" id="showCredits">VIEW CREDITS <b>↗</b></button></div>
+  <div class="result hidden" id="stageResult"><svg class="troll" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="9" cy="52" rx="8" ry="12" fill="#5aa84a"/><ellipse cx="91" cy="52" rx="8" ry="12" fill="#5aa84a"/><circle cx="50" cy="55" r="40" fill="#6bbf59"/><path d="M38 17q4-12 12-4q8-8 12 4" fill="#e2792b"/><path d="M25 38l20 6M75 38l-20 6" stroke="#1b2b17" stroke-width="5" stroke-linecap="round"/><circle cx="36" cy="50" r="9" fill="#fff"/><circle cx="64" cy="50" r="9" fill="#fff"/><circle cx="38" cy="52" r="4" fill="#111"/><circle cx="62" cy="52" r="4" fill="#111"/><path d="M24 68q26 30 52 0q-26 8-52 0z" fill="#1b2b17"/><path d="M34 71h6v5h-6zM46 73h8v6h-8zM60 71h6v5h-6z" fill="#fff"/></svg><p class="eyebrow centered">TROLL ALERT</p><h2 id="stageResultTitle">Good work.</h2><p id="stageResultText"></p><button class="primary" id="nextStage">CONTINUE <b>↗</b></button></div>
+  <div class="result hidden" id="finalResult"><div class="result-icon" id="finalIcon">★</div><p class="eyebrow centered" id="finalEyebrow">ALL EIGHT STAGES COMPLETE</p><h2 id="finalTitle">Challenge complete.</h2><p id="finalText"></p><div class="result-xp"><small>XP EARNED</small><strong id="earnedXP">+000</strong></div><button class="primary hidden" id="retry">TRY AGAIN <b>↗</b></button> <button class="primary" id="showCredits">VIEW CREDITS <b>↗</b></button></div>
  </div>
 </div>
 
@@ -99,5 +99,5 @@
   <div class="cr end"><h3>THE END</h3><button class="cbtn goHome" id="creditsHome">RETURN TO MATHKING ↗</button></div>
  </div>
 </div>
-<script src="questions.js"></script><script src="script.js"></script>
+<script src="questions.js"></script><script src="questions2.js"></script><script src="script.js"></script>
 </body></html>
