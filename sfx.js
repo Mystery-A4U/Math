@@ -8,7 +8,8 @@ const MK_CONFIG={
     intro:"assets/intro.mp3",          // team intro jingle
     heartbreak:"assets/heart-break.mp3", // plays every time a heart breaks
     faaah:"assets/faaah.mp3",          // the secret-stage troll sound
-    credits:"assets/credits.mp3"       // warm music for the credits scene
+    credits:"assets/credits.mp3",      // warm music for the credits scene
+    finalCat:"assets/green-screen-cat.mp3" // supplied audio sting when all hearts are gone
   }
 };
 
