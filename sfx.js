@@ -7,7 +7,8 @@ const MK_CONFIG={
   files:{
     intro:"assets/intro.mp3",          // team intro jingle
     heartbreak:"assets/heart-break.mp3", // plays every time a heart breaks
-    faaah:"assets/faaah.mp3"           // the secret-stage troll sound
+    faaah:"assets/faaah.mp3",          // the secret-stage troll sound
+    credits:"assets/credits.mp3"       // warm music for the credits scene
   }
 };
 
@@ -113,11 +114,73 @@ const SFX=(()=>{
     try{S[k]&&S[k](arg)}catch(e){}
     return null;
   }
+
+  /* ---------- warm credits music (soft pads + gentle plucks + reverb) ---------- */
+  const M={g:null,osc:[],audio:null};
+  function reverb(a){
+    const len=Math.floor(a.sampleRate*2.6),ir=a.createBuffer(2,len,a.sampleRate);
+    for(let c=0;c<2;c++){const d=ir.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.4)}
+    const cv=a.createConvolver();cv.buffer=ir;return cv;
+  }
+  function synthMusic(dur){
+    const a=ctx();if(!a)return;
+    musicStop(true);
+    const t0=a.currentTime+.1,g=a.createGain(),lp=a.createBiquadFilter(),rv=reverb(a),wet=a.createGain(),osc=[];
+    lp.type="lowpass";lp.frequency.value=1500;
+    g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(.5,t0+2.5);
+    g.gain.setValueAtTime(.5,t0+dur-4);g.gain.exponentialRampToValueAtTime(.0001,t0+dur);
+    wet.gain.value=.55;
+    g.connect(lp);lp.connect(master);lp.connect(rv);rv.connect(wet);wet.connect(master);
+    // C - Am - F - G - C - Am - F - C (a soft, hopeful loop that ends at home)
+    const chords=[[48,55,59,64],[45,52,60,64],[41,48,57,64],[43,50,59,62],[48,55,59,64],[45,52,60,64],[41,48,57,64],[48,55,60,64]];
+    const step=dur/chords.length;
+    chords.forEach((ch,i)=>{
+      const s=t0+i*step;
+      ch.forEach(n=>[["sine",0],["triangle",7]].forEach(([type,det])=>{
+        const o=a.createOscillator(),e=a.createGain();
+        o.type=type;o.frequency.value=note(n);o.detune.value=det;
+        e.gain.setValueAtTime(.0001,s);e.gain.linearRampToValueAtTime(.075,s+1.1);
+        e.gain.setValueAtTime(.075,s+step-.9);e.gain.linearRampToValueAtTime(.0001,s+step+.9);
+        o.connect(e);e.connect(g);o.start(s);o.stop(s+step+1);osc.push(o);
+      }));
+      [0,1,2,3,2,1].forEach((idx,k)=>{
+        const s2=s+k*step/6,o=a.createOscillator(),e=a.createGain();
+        o.type="triangle";o.frequency.value=note(ch[idx]+12);
+        e.gain.setValueAtTime(.0001,s2);e.gain.linearRampToValueAtTime(.07,s2+.012);e.gain.exponentialRampToValueAtTime(.0001,s2+1.6);
+        o.connect(e);e.connect(g);o.start(s2);o.stop(s2+1.7);osc.push(o);
+      });
+    });
+    M.g=g;M.osc=osc;
+  }
+  function music(dur){
+    if(muted)return;
+    musicStop(true);
+    const src=MK_CONFIG.files.credits;
+    if(src&&!bad.credits){
+      try{
+        const au=new Audio(src);au.volume=.85;
+        au.addEventListener("error",()=>{bad.credits=1;if(M.audio===au){M.audio=null;synthMusic(dur)}});
+        M.audio=au;const p=au.play();if(p&&p.catch)p.catch(()=>{});
+        return;
+      }catch(e){}
+    }
+    synthMusic(dur);
+  }
+  function musicStop(quick){
+    if(M.audio){try{M.audio.pause()}catch(e){}M.audio=null}
+    if(M.g&&ac){
+      const t=ac.currentTime,g=M.g,os=M.osc;
+      try{g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(Math.max(g.gain.value,.0001),t);g.gain.exponentialRampToValueAtTime(.0001,t+(quick?.05:.8))}catch(e){}
+      setTimeout(()=>os.forEach(o=>{try{o.stop()}catch(e){}}),quick?120:950);
+      M.g=null;M.osc=[];
+    }
+  }
   addEventListener("pointerdown",()=>ctx(),{once:true,capture:true});
   return{
     play,
     correct:k=>play("correct",k),
-    toggle:()=>{muted=!muted;localStorage.setItem("mk_mute",muted?"1":"0");return muted},
+    music,musicStop:()=>musicStop(),
+    toggle:()=>{muted=!muted;localStorage.setItem("mk_mute",muted?"1":"0");if(muted)musicStop();return muted},
     isMuted:()=>muted
   };
 })();

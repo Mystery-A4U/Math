@@ -81,5 +81,8 @@
 .xppop{position:fixed;z-index:71;pointer-events:none;font:700 20px var(--mono);color:#e6c260;text-shadow:0 0 12px #e6c260;animation:xpup 1.1s ease-out forwards}
 @keyframes xpup{to{opacity:0;transform:translateY(-70px) scale(1.3)}}
 
+/* credits roll: 42s -> 28s (the music is timed to match) */
+.roll{animation-duration:28s}
+
 @media(max-width:700px){.streak{font-size:11px;padding:4px 8px}.quiz-head{gap:8px}.stage-card .sct{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.bgsym,#fxCanvas{display:none}.slide,#quizOverlay .option,.stage-card *,.hearts span{animation:none!important}}
