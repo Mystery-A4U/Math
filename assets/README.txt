@@ -1,10 +1,12 @@
-Put your own sounds in this folder (optional). Use these exact names:
+MATHKING LOCAL ASSETS
 
-  intro.mp3         team intro jingle (plays on the TEAM 7 splash)
-  heart-break.mp3   plays every time a heart breaks
-  faaah.mp3         the secret-stage troll sound
-  credits.mp3       music for the credits scene (the built-in warm music plays if missing)
+cat-laughing.mp4
+- Uploaded 4-second cat laughing meme.
+- Plays whenever a heart is lost; the final lost heart gets a larger game-over treatment.
 
-If a file is missing, the game uses its built-in sound instead.
-Different file type (.wav, .m4a)? Change the names at the top of sfx.js.
-Team name: change "team" at the top of sfx.js.
+green-screen-cat.mp3
+- Uploaded audio-only file (6.86 seconds).
+- Plays when the player runs out of hearts.
+
+NOTE:
+The supplied green-screen-cat.mp3 is an audio file, not a video. To show a transparent/green-screen cat character over the game at game over, add the actual green-screen MP4/MOV video. A video with alpha transparency is ideal; a green-background video can be chroma-keyed separately.
