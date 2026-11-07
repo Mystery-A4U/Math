@@ -74,8 +74,44 @@ const FX=(()=>{
     pips(s,q);
     const h=$("question");h.classList.remove("slide");void h.offsetWidth;h.classList.add("slide");
   }
+  let catToastTimer=null;
+  const CAT_LINES={
+    sideeye:{tag:"SIDE-EYE CAT",sound:"catMeow",face:"sideeye"},
+    cry:{tag:"CRYING CAT",sound:"sadMeow",face:"cry"},
+    smug:{tag:"SMUG CAT",sound:"catLaugh",face:"smug"},
+    shock:{tag:"SHOCKED CAT",sound:"vineBoom",face:"shock"},
+    sleepy:{tag:"SLEEPY CAT",sound:"bruh",face:"sleepy"},
+    judge:{tag:"JUDGING CAT",sound:"bruh",face:"judge"}
+  };
+  function catSVG(face){
+    const eye=(x,y,r=7)=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r+2}" fill="#111"/>`;
+    let eyes="",mouth="<path d='M43 65q7 8 14 0' fill='none' stroke='#111' stroke-width='3' stroke-linecap='round'/>";
+    if(face==="sideeye"){eyes=`<ellipse cx="39" cy="49" rx="5" ry="8" fill="#111"/><ellipse cx="64" cy="49" rx="8" ry="5" fill="#111"/>`;mouth="<path d='M43 68q10-6 19 0' fill='none' stroke='#111' stroke-width='3'/>"}
+    if(face==="cry"){eyes=`${eye(39,49)}${eye(64,49)}<path d='M35 57q-9 15 1 20q8-4 2-20M65 57q-8 16 2 20q8-5-2-20' fill='#65b8ff'/>`;mouth="<path d='M42 69q8-12 16 0' fill='none' stroke='#111' stroke-width='3'/>"}
+    if(face==="smug"){eyes="<path d='M30 49q9-10 18 0M57 49q9-10 18 0' fill='none' stroke='#111' stroke-width='4' stroke-linecap='round'/>";mouth="<path d='M43 66q13 8 22-3' fill='none' stroke='#111' stroke-width='4' stroke-linecap='round'/>"}
+    if(face==="shock"){eyes=`${eye(39,49,9)}${eye(64,49,9)}`;mouth="<ellipse cx='52' cy='69' rx='7' ry='10' fill='#111'/>"}
+    if(face==="sleepy"){eyes="<path d='M29 52q10-9 20 0M57 52q10-9 20 0' fill='none' stroke='#111' stroke-width='4' stroke-linecap='round'/>";mouth="<path d='M44 68q8 4 16 0' fill='none' stroke='#111' stroke-width='3'/>"}
+    if(face==="judge"){eyes="<path d='M29 47l20 5M57 52l20-5' stroke='#111' stroke-width='5' stroke-linecap='round'/>";mouth="<path d='M42 69h20' stroke='#111' stroke-width='4' stroke-linecap='round'/>"}
+    const fur=face==="smug"?"#f2a34a":face==="cry"?"#d8dce5":face==="sleepy"?"#b9b9b3":"#fff";
+    const inner=face==="smug"?"#c96f28":"#aaa";
+    return `<svg viewBox='0 0 104 104' role='img' aria-label='Funny cat reaction'><rect width='104' height='104' fill='#e9e9e4'/><path d='M17 38L12 10Q29 13 38 29Q52 22 67 29Q78 12 93 10L87 43Q95 59 86 79Q76 96 52 96Q28 96 18 79Q9 59 17 38Z' fill='${fur}' stroke='#111' stroke-width='3'/><path d='M20 29L17 17Q29 20 36 32M84 29L88 17Q76 20 69 32' fill='${inner}' stroke='#111' stroke-width='2'/><path d='M29 39q9-6 18 0M57 39q9-6 18 0' fill='none' stroke='#111' stroke-width='3'/>${eyes}<path d='M48 59q4-5 8 0q-4 5-8 0' fill='#f28b9b' stroke='#111' stroke-width='1.5'/>${mouth}<path d='M20 62L4 58M20 68L4 70M84 62l16-4M84 68l16 2' stroke='#111' stroke-width='1.5'/>${face==="cry"?"<path d='M35 58q-10 17 0 22M67 58q10 17 0 22' stroke='#56a9ed' stroke-width='4' fill='none'/>":""}<path d='M38 87q14 7 28 0' fill='none' stroke='#ddd' stroke-width='3'/></svg>`;
+  }
+  function catReaction(kind,caption,sound){
+    const cfg=CAT_LINES[kind]||CAT_LINES.sideeye,box=$("catMemeToast");
+    if(!box)return;
+    clearTimeout(catToastTimer);
+    $("catMemeArt").innerHTML=catSVG(cfg.face);
+    $("catMemeTag").textContent=cfg.tag;
+    $("catMemeCaption").textContent=caption||"The cat has reviewed your decision.";
+    box.classList.remove("hidden","show");void box.offsetWidth;box.classList.add("show");
+    SFX.play(sound||cfg.sound);
+    catToastTimer=setTimeout(()=>{box.classList.remove("show");setTimeout(()=>box.classList.add("hidden"),380)},3100);
+  }
   function trollMood(score){
-    if(score===3)confetti(null,null,90);
+    if(score===3){confetti(null,null,90);catReaction("smug","A perfect score? The cat suspects academic fraud.","catLaugh")}
+    else if(score===2)catReaction("sideeye","2/3. The cat expected more. It always does.","catMeow");
+    else if(score===1)catReaction("cry","1/3. Even the cat is trying not to laugh.","sadMeow");
+    else catReaction("shock","0/3. The calculator has requested a new owner.","vineBoom");
   }
 
   /* ---------- stage card ---------- */
@@ -218,5 +254,5 @@ const FX=(()=>{
     });
   })();
 
-  return{confetti,shards,onCorrect,streak:badge,onQuestion,trollMood,stageCard,teamIntro,secretStage,stopSecret,enterFS};
+  return{confetti,shards,onCorrect,streak:badge,onQuestion,trollMood,catReaction,stageCard,teamIntro,secretStage,stopSecret,enterFS};
 })();

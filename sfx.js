@@ -85,6 +85,30 @@ const SFX=(()=>{
       tone(415,.3,{type:"sawtooth",at:.64,v:.13});
       tone(392,.8,{type:"sawtooth",at:.96,to:330,v:.13});
     },
+    // Original meme-style sounds synthesized in Web Audio (no copyrighted audio files).
+    catMeow:()=>{
+      tone(620,.22,{type:"sawtooth",to:880,v:.12});
+      tone(880,.42,{type:"sawtooth",to:430,at:.2,v:.13});
+      tone(1240,.12,{type:"triangle",to:700,at:.12,v:.035});
+    },
+    bruh:()=>{
+      tone(180,.75,{type:"sawtooth",to:62,v:.24});
+      tone(92,.65,{type:"sine",to:48,at:.08,v:.28});
+      noise(.18,{type:"lowpass",f:180,to:70,v:.18});
+    },
+    vineBoom:()=>{
+      tone(72,.85,{type:"sine",to:34,v:.55});
+      tone(48,.65,{type:"triangle",to:28,at:.02,v:.34});
+      noise(.24,{type:"lowpass",f:110,to:45,v:.22});
+    },
+    catLaugh:()=>{
+      [0,.16,.32,.48,.64].forEach((at,i)=>tone(420+(i%2)*90,.12,{type:"square",to:300,at,v:.055}));
+      tone(260,.42,{type:"triangle",to:170,at:.72,v:.08});
+    },
+    sadMeow:()=>{
+      tone(740,.28,{type:"sawtooth",to:490,v:.09});
+      tone(490,.58,{type:"sawtooth",to:220,at:.24,v:.1});
+    },
     win:()=>{
       [60,64,67,72,76].forEach((n,i)=>tone(note(n),.22,{type:"triangle",at:i*.12,v:.2}));
       [72,76,79,84].forEach(n=>tone(note(n),.9,{at:.7,v:.1}));
