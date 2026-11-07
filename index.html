@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#f7f7f4">
 <title>mathking — The Maths Challenge</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="premium.css">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="premium.css"><link rel="stylesheet" href="fx.css">
 </head>
 <body>
 <header class="topbar">
@@ -46,7 +46,7 @@
         <div class="stage"><b>05</b><small>GEOMETRY</small></div><div class="stage"><b>06</b><small>ALGEBRA</small></div>
         <div class="stage"><b>07</b><small>BRAIN TEASER</small></div><div class="stage"><b>08</b><small>FINAL BOSS</small></div>
       </div>
-      <p class="challenge-copy">Every stage has 3 questions, you have 3 hearts, and trolls wait in between. Stages 1–3 ease you in. From Stage 4 the quiz turns hard: tougher questions, a 45-second timer and bonus XP. The quiz opens full screen.</p>
+      <p class="challenge-copy">Every stage has 3 questions, you have 3 hearts, and trolls wait in between. Stages 1–3 ease you in. From Stage 4 the quiz turns hard: tougher questions, a 45-second timer and bonus XP. Finish all eight stages and a secret stage is waiting. The quiz opens full screen.</p>
       <button class="primary" id="startQuiz">START 8-STAGE QUIZ <b>↗</b></button>
     </div>
     <div class="syllabus-note"><span class="syllabus-symbol">∑</span><div><small>SYLLABUS RANGE</small><strong>Classes 2–12 · Age-appropriate mathematics</strong><p>Topics adapt to the standard you select before starting.</p></div></div>
@@ -82,9 +82,28 @@
   <div class="quiz-meta"><span id="stageLabel">STAGE 01 / 08</span><span id="questionNumber">QUESTION 01 / 01</span><span id="timer"></span></div>
   <div id="questionView"><p class="topic-tag" id="topicTag">WARM UP</p><h2 id="question">Question</h2><p class="question-sub">Choose one answer.</p><div class="options" id="options"></div><div class="quiz-actions"><span id="quizMessage">SELECT YOUR ANSWER</span><button class="primary" id="submit" disabled>SUBMIT ANSWER <b>↗</b></button></div></div>
   <div class="result hidden" id="stageResult"><svg class="troll" viewBox="0 0 100 100" aria-hidden="true"><ellipse cx="9" cy="52" rx="8" ry="12" fill="#5aa84a"/><ellipse cx="91" cy="52" rx="8" ry="12" fill="#5aa84a"/><circle cx="50" cy="55" r="40" fill="#6bbf59"/><path d="M38 17q4-12 12-4q8-8 12 4" fill="#e2792b"/><path d="M25 38l20 6M75 38l-20 6" stroke="#1b2b17" stroke-width="5" stroke-linecap="round"/><circle cx="36" cy="50" r="9" fill="#fff"/><circle cx="64" cy="50" r="9" fill="#fff"/><circle cx="38" cy="52" r="4" fill="#111"/><circle cx="62" cy="52" r="4" fill="#111"/><path d="M24 68q26 30 52 0q-26 8-52 0z" fill="#1b2b17"/><path d="M34 71h6v5h-6zM46 73h8v6h-8zM60 71h6v5h-6z" fill="#fff"/></svg><p class="eyebrow centered">TROLL ALERT</p><h2 id="stageResultTitle">Good work.</h2><p id="stageResultText"></p><button class="primary" id="nextStage">CONTINUE <b>↗</b></button></div>
+  <div class="hidden" id="secretView">
+   <p class="eyebrow centered"><span></span> SECRET STAGE ??? <span></span></p>
+   <div class="secret-timer"><div class="timebar"><i id="sbar"></i></div><b id="ssecs">20</b></div>
+   <div class="secret-q">Evaluate &int;&#8320;^&infin; (x&sup2; &middot; e&#739; &middot; sin x) &divide; (1 + cos&#8309;x) dx and prove your answer using Class 12 methods.</div>
+   <div class="options">
+    <button type="button" class="option"><span class="key">A</span><span>&pi;&sup2;/7</span></button>
+    <button type="button" class="option"><span class="key">B</span><span>e<sup>&pi;</sup> &minus; 1</span></button>
+    <button type="button" class="option"><span class="key">C</span><span>0</span></button>
+    <button type="button" class="option"><span class="key">D</span><span>None of these</span></button>
+   </div>
+   <div id="smsg"></div>
+   <div class="psst" id="psst">Psst&hellip; do not click anything. Just wait for the timer. &#129323;</div>
+  </div>
   <div class="result hidden" id="finalResult"><div class="result-icon" id="finalIcon">★</div><p class="eyebrow centered" id="finalEyebrow">ALL EIGHT STAGES COMPLETE</p><h2 id="finalTitle">Challenge complete.</h2><p id="finalText"></p><div class="result-xp"><small>XP EARNED</small><strong id="earnedXP">+000</strong></div><button class="primary hidden" id="retry">TRY AGAIN <b>↗</b></button> <button class="primary" id="showCredits">VIEW CREDITS <b>↗</b></button></div>
  </div>
 </div>
+
+<div class="stage-card hidden" id="stageCard" aria-live="polite"><div><div class="scn" id="scNum"></div><h2 id="scName"></h2><div class="sct" id="scTag"></div></div></div>
+
+<div class="team-intro hidden" id="teamIntro"><div class="ti-glow"></div><div><div class="ti-presents">PRESENTED BY</div><h1 id="tiTeam">TEAM 7</h1><div class="ti-sub">MATHKING / THE MATHS CHALLENGE</div></div><button type="button" class="skip" id="tiSkip">SKIP INTRO</button></div>
+
+<div class="faaah hidden" id="faaah"><div><div id="faaahFace"></div><p>FAAAH!</p><small>THE CORRECT ANSWER WAS PATIENCE</small></div></div>
 
 <div class="credits hidden" id="credits">
  <button class="skip goHome">SKIP ✕</button>
@@ -99,5 +118,5 @@
   <div class="cr end"><h3>THE END</h3><button class="cbtn goHome" id="creditsHome">RETURN TO MATHKING ↗</button></div>
  </div>
 </div>
-<script src="questions.js"></script><script src="questions2.js"></script><script src="script.js"></script>
+<script src="sfx.js"></script><script src="fx.js"></script><script src="questions.js"></script><script src="questions2.js"></script><script src="script.js"></script>
 </body></html>
